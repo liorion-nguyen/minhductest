@@ -1,11 +1,16 @@
 import { useState } from "react";
 import { Alert, Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
+type Task = {
+    content: string;
+    isEdit: boolean;
+}
+
 export default function TodoList() {
     const [task, setTask] = useState('');
-    const [listTask, setListTask] = useState<string[]>([]);
+    const [listTask, setListTask] = useState<Task[]>([]);
     function handleAddTask() {
-        setListTask([...listTask, task]);
+        setListTask([...listTask, {content: task, isEdit: false}]);
         setTask('');
     }
     function handleDeleteTask(index: number) {
@@ -20,6 +25,16 @@ export default function TodoList() {
         // let newFake = listTask.filter((item, i) => i != index);
         // setListTask(newFake);
     }
+    function handleUpdateTask(index: number) {
+        let newFake = [...listTask];
+        newFake[index].isEdit = !newFake[index].isEdit;
+        setListTask(newFake);
+    }
+    function handleUpdateContent(text: string, index: number) {
+        let newFake = [...listTask]; // Copy listTask
+        newFake[index].content = text; // Update content của phần tử có chỉ số là index thành text.
+        setListTask(newFake);
+    }
     return (
         <View style={styles.container}>
             <Text style={styles.title}>TodoList</Text>
@@ -33,7 +48,13 @@ export default function TodoList() {
                 {
                     listTask.map((item, index) => (
                         <View style={styles.boxGroup}>
-                            <Text style={styles.textTask}>{item}</Text>
+                            {
+                                item.isEdit
+                                ? <TextInput placeholder={item.content} value={item.content} style={styles.textTask} onChangeText={text => handleUpdateContent(text, index)}/> 
+                                : <Text style={styles.textTask}>{item.content}</Text>
+                            }
+                            
+                            <Button title="Update" onPress={() => handleUpdateTask(index)}/>
                             <Button title="Delete" onPress={() => handleDeleteTask(index)}/>
                         </View>
                     ))
