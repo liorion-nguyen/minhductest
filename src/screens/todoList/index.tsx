@@ -53,7 +53,6 @@ export default function TodoList() {
                                 ? <TextInput placeholder={item.content} value={item.content} style={styles.textTask} onChangeText={text => handleUpdateContent(text, index)}/> 
                                 : <Text style={styles.textTask}>{item.content}</Text>
                             }
-                            
                             <Button title="Update" onPress={() => handleUpdateTask(index)}/>
                             <Button title="Delete" onPress={() => handleDeleteTask(index)}/>
                         </View>

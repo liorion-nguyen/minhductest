@@ -1,7 +1,7 @@
 import { Alert, Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { commonStyles } from "../../styles/common";
 import { useState } from "react";
-
+   
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
