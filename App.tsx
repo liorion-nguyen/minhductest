@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   },
 });
 
-
+// vsdfdsfdsfdfdsfds
 /*
 Lấy project từ remote git: git clone https://github.com/username/repository.git (npm install)
 Kiểm tra đang connect đến remote nào: git remote -v
@@ -33,4 +33,6 @@ Cách đẩy code:
 git add . : Thêm file vào commit
 git commit -m "message": Đẩy commit lên remote
 git push origin main: Đẩy code lên remote
+
+Kéo code từ remote về local: git pull origin main
 */
